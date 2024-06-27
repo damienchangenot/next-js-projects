@@ -1,15 +1,33 @@
-async function getTypes(types: string) {
-    const res = await fetch(`https://pokeapi.co/api/v2/type/${types}`)
-    if(!res.ok){
-      throw new Error('Erreur');
-    }
-    return res.json();
-  }
+import { Suspense, useEffect, useState } from "react";
+import CardPokemon from "./CardPokemon";
+import CardSkeleton from "./CardSkeleton";
+import { Pokemon } from "@/lib/definitions";
+import ContainerSkeleton from "./ContainerSkeleton";
 
-export default async function ContainerPokemon(types :string) {
+export function ContainerPokemon({ types }: {types:string}){
+  const [data, setData] = useState()
+  const [isLoading, setLoading] = useState(true)
 
-    const pokemon = await getTypes(types);
+  //const pokemons = await getPokemonsByType({types});
+  useEffect(() => {
+    fetch(`https://pokeapi.co/api/v2/type/${types}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data.pokemon)
+        setLoading(false)
+      })
+  }, [types])
+  
+  if (isLoading) return <ContainerSkeleton/>
+  if (!data) return <p>No profile data</p>
+  
   return (
-    <div>Container</div>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-6 lg:mx-20">
+      {data.map((pokemon : { pokemon: Pokemon}) => (
+        <Suspense  key={pokemon.pokemon.name} fallback={<CardSkeleton/> }>
+          <CardPokemon  pokemon={pokemon.pokemon}></CardPokemon>
+        </Suspense>
+      ))}
+    </div>
   )
 }

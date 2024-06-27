@@ -58,19 +58,19 @@ export default function TrafficLight() {
                 <p>Projet réalise avec NextJS et Tailwind CSS</p>
                 <p>Le feu reste 7 seconde au feu rouge puis passe 5 seconde au feu vert et orange ou clignote orange si on clique sur le bouton en panne</p>
             </div>
-            <div className="flex flex-col gap-2 border-2 border-yellow-500 p-10 rounded-xl">
-                <div className="border rounded-lg p-4">
+            <div className="flex flex-col gap-2 border-2 border-yellow-500  bg-gradient-to-b from-yellow-600 to-yellow-700 p-10 rounded-xl">
+                <div className="border border-yellow-500 rounded-lg p-4">
                     <div className={`w-28 h-28 ${light === "red" ? "bg-red-500 shadow-2xl shadow-red-500 border-2" : "bg-gray-300"} rounded-full`}></div>
                 </div>
-                <div className="border rounded-lg p-4">
+                <div className="border border-yellow-500 rounded-lg p-4">
                     <div className={`w-28 h-28 ${light === "yellow" ? "bg-yellow-500 shadow-2xl shadow-yellow-500 border-2" : "bg-gray-300" } rounded-full`}></div>
                 </div>
-                <div className="border rounded-lg p-4">
+                <div className="border border-yellow-500 rounded-lg p-4">
                     <div className={`w-28 h-28 ${light === "green" ? "bg-green-500 shadow-2xl shadow-green-500 border-2" : "bg-gray-300" } rounded-full`}></div>  
                 </div>
             </div>
             <div className="w-full flex justify-center">
-                <Button onClick={handlePanne} className={` ${isPanne ?  "bg-blue-500 hover:bg-blue-700 ": "bg-red-500 hover:bg-red-700"}`}>{isPanne ? 'Fonctionnement normal' : 'Mettre en Panne'}</Button>
+                <Button onClick={handlePanne} className={` ${isPanne ?  "bg-blue-500 hover:bg-blue-700 ": "bg-red-500 hover:bg-red-700"} text-neutral-50`}>{isPanne ? 'Fonctionnement normal' : 'Mettre en Panne'}</Button>
             </div>
         </div>
     </main>
