@@ -9,10 +9,14 @@ export default function page() {
   const [type, setType] = useState('normal');
 
   return (
-    <Suspense fallback={<ContainerSkeleton/>}>
-        <TypeBar setType={setType} type={type} ></TypeBar>
-        <ContainerPokemon types={type}/>
-    </Suspense>
+    <section>
+      <h1 className="text-4xl text-center font-geist"> Pokedex Pokemon</h1>
+      <Suspense fallback={<ContainerSkeleton/>}>
+          <TypeBar setType={setType} type={type} ></TypeBar>
+          <ContainerPokemon types={type}/>
+      </Suspense>
+    </section>
+
     
   )
 }

@@ -3,6 +3,7 @@ import CardPokemon from "./CardPokemon";
 import CardSkeleton from "./CardSkeleton";
 import { Pokemon } from "@/lib/definitions";
 import ContainerSkeleton from "./ContainerSkeleton";
+import Image from "next/image";
 
 export function ContainerPokemon({ types }: {types:string}){
   const [data, setData] = useState()
@@ -18,15 +19,14 @@ export function ContainerPokemon({ types }: {types:string}){
       })
   }, [types])
   
-  if (isLoading) return <ContainerSkeleton/>
+  if (isLoading) return <Image className="animate-spin" src={'/pokeball.svg'} alt="pokeball loader" width={100} height={100} ></Image>
   if (!data) return <p>No profile data</p>
   
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-6 lg:mx-20">
       {data.map((pokemon : { pokemon: Pokemon}) => (
-        <Suspense  key={pokemon.pokemon.name} fallback={<CardSkeleton/> }>
-          <CardPokemon  pokemon={pokemon.pokemon}></CardPokemon>
-        </Suspense>
+        <CardPokemon key={pokemon.pokemon.name}  pokemon={pokemon.pokemon}></CardPokemon>
+
       ))}
     </div>
   )
