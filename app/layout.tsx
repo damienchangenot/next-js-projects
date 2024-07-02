@@ -38,7 +38,7 @@ export default function RootLayout({
         , GeistSans.variable, game.variable, 'font-sans')}>
         <ThemeProvider
             attribute="class"
-            defaultTheme="black"
+            defaultTheme="dark"
           >
           <Navbar menu={menu}/>
           {children}
