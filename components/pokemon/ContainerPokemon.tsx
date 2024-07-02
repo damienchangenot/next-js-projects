@@ -27,7 +27,7 @@ export function ContainerPokemon(){
   return (
     <>
       <TypeBar setType={setType} type={type} ></TypeBar>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-6 lg:mx-20">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-6 lg:mx-20 ">
         {data.map((pokemon : { pokemon: Pokemon}) => (
           <CardPokemon key={pokemon.pokemon.name}  pokemon={pokemon.pokemon}></CardPokemon>
         ))}

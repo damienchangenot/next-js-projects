@@ -20,7 +20,8 @@ const config = {
     extend: {
       fontFamily: {
         sans: ['var(--font-geist-sans)'],
-        inter: ['var(--font-inter)']
+        inter: ['var(--font-inter)'],
+        game: ['var(--font-game)']
       },
       colors: {
         border: "hsl(var(--border))",
