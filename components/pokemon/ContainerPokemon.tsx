@@ -7,7 +7,7 @@ import Image from "next/image";
 import TypeBar from "./TypeBar";
 
 export function ContainerPokemon(){
-  const [data, setData] = useState()
+  const [data, setData] = useState([])
   const [isLoading, setLoading] = useState(true)
   const [type, setType] = useState('normal');
 
