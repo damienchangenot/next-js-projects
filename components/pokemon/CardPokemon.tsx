@@ -21,7 +21,7 @@ export default function CardPokemon({ pokemon} : {pokemon: Pokemon}) {
   const srcSprites = data.sprites.front_default || data.sprites.other['official-artwork'].front_default || data.sprites.other.dream_world.front_default || '/pokeball.svg';
   return (
     <div className='w-full py-3 rounded-lg bg-gradient-to-tr from-red-700 to-red-400 flex flex-col justify-center items-center   '>
-          <div className="h-5/6 rounded-full bg-lime-50 shadow-lg  "><Image className='transition ease-in-out hover:scale-110' src={srcSprites} alt='Image pokemon' width={200} height={200}></Image></div>
+          <div className="h-5/6 rounded-full bg-lime-50 shadow-lg  my-2 "><Image className='transition ease-in-out hover:scale-110' src={srcSprites} alt='Image pokemon' width={200} height={200}></Image></div>
           <div className='text-center text-2xl my-3 text-secondary-foreground'>{pokemon.name}</div>
           <div className="flex">
           {data.types.map(( type : Type ) => (

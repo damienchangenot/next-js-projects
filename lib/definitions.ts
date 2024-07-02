@@ -18,6 +18,6 @@ export type Pokemon = {
 
 export type Type = {
   type: {
-    name : "normal" 
+    name : "normal" | "bug" | "dark" | "dragon" | "electric" | "fire" | "fairy" | "fighting" | "flying" | "ghost" | "grass" | "ground" | "ice" | "poison" | "psychic" | "rock" | "steel" | "water"
   }
 }
