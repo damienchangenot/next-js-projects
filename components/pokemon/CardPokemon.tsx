@@ -25,7 +25,7 @@ export default function CardPokemon({ pokemon} : {pokemon: Pokemon}) {
           <div className='text-center text-2xl my-3 text-secondary-foreground'>{pokemon.name}</div>
           <div className="flex">
           {data.types.map(( type : Type ) => (
-            <Badge variant={type.type.name} >{type.type.name}</Badge>
+            <Badge key={type.type.name} variant={type.type.name} >{type.type.name}</Badge>
           ))}
           </div>
     </div>
