@@ -15,6 +15,7 @@ import { Button } from "../ui/button";
 import Image from "next/image";
 import { ModeToggle } from "../ui/mode-thoggle";
 import { usePathname } from "next/navigation";
+import { MenuItem } from "@/app/layout";
 
 type MenuProps = {
   menu: MenuItem[];
