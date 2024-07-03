@@ -8,7 +8,6 @@ export default function Pokemon() {
     <section className="font-game">
       <h1 className="text-4xl text-center mt-3"> Pokedex Pokemon</h1>
       <Suspense fallback={<ContainerSkeleton/>}>
-     
           <ContainerPokemon/>
       </Suspense>
     </section>
