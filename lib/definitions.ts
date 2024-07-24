@@ -3,6 +3,7 @@ export type Pokemon = {
     name : string,
     url : string,
     types : [],
+    stats :[],
     sprites : {
       front_default : string,
       other : {
@@ -19,5 +20,14 @@ export type Pokemon = {
 export type Type = {
   type: {
     name : "normal" | "bug" | "dark" | "dragon" | "electric" | "fire" | "fairy" | "fighting" | "flying" | "ghost" | "grass" | "ground" | "ice" | "poison" | "psychic" | "rock" | "steel" | "water"
+  }
+}
+
+export type Stat = {
+  base_stat: number,
+  effort : number,
+  stat : {
+    name: "hp" | "attack" | "defense" | "special-attack" | "special-defense" | "speed",
+    url: string
   }
 }

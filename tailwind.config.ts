@@ -72,10 +72,22 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        unfoldIn : {
+          '0%': { transform: 'translate(-50%, 0%) scaleY(.005) scaleX(0)' },
+          '50%': { transform: 'translate(-50%, 0%) scaleY(.005) scaleX(1)' },
+          '100%': { transform: 'translate(-50%, -50%) scaleY(1) scaleX(1)' },
+        },
+        unfoldOut : {
+          '0%': { transform: 'translate(-50%, -50%) scaleY(1) scaleX(1)' },
+          '50%': { transform: 'translate(-50%, 0%) scaleY(.005) scaleX(1)' },
+          '100%': { transform: 'translate(-50%, 0%) scaleY(.005) scaleX(0)' },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "unfoldIn": "unfoldIn .7s ease-in-out",
+        "unfoldOut": "unfoldOut .8s ease-in-out"
       },
     },
   },
