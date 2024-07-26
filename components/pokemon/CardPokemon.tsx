@@ -50,29 +50,33 @@ export default function CardPokemon({ pokemon} : {pokemon: Pokemon}) {
               </div>
         </div>
       </DialogTrigger>
-      <DialogContent className=''>
+      <DialogContent className='py-3'>
         <DialogHeader>
         <DialogTitle>{pokemon.name}</DialogTitle>
           <DialogDescription>
-            Make changes to your profile here. Click save when you're done.
+            <p>Make changes to your profile here. Click save when you're done.</p>
           </DialogDescription>
         </DialogHeader>
         <Image className='transition ease-in-out hover:scale-110' src={srcSprites} alt='Image pokemon' width={150} height={150}></Image>
-        <Tabs defaultValue="account" >
+        <Tabs defaultValue="accaboutount" >
         <TabsList>
-          <TabsTrigger value="account">Account</TabsTrigger>
-          <TabsTrigger value="password">Password</TabsTrigger>
+          <TabsTrigger value="about">About</TabsTrigger>
+          <TabsTrigger value="stats">Stats</TabsTrigger>
+          <TabsTrigger value="evolutions">Evolutions</TabsTrigger>
         </TabsList>
-        <TabsContent value="account">        
-          <div>
-            <ul>
-              {data.stats.map(( stat : Stat ) => (
-                <li key={stat.stat.name}>{stat.stat.name} : {stat.base_stat} / {statsMaxValues[stat.stat.name]}</li>
-              ))}
-            </ul>
-          </div>
+        <TabsContent value="about">        
+
         </TabsContent>
-        <TabsContent value="password">Change your password here.</TabsContent>
+        <TabsContent value="stats">
+          <div>
+              <ul>
+                {data.stats.map(( stat : Stat ) => (
+                  <li key={stat.stat.name}>{stat.stat.name} : {stat.base_stat} / {statsMaxValues[stat.stat.name]}</li>
+                ))}
+              </ul>
+            </div>
+        </TabsContent>
+        <TabsContent value="evolutions">Change your password here.</TabsContent>
       </Tabs>
 
         <DialogFooter>
