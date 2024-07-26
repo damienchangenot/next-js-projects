@@ -54,7 +54,7 @@ export default function CardPokemon({ pokemon} : {pokemon: Pokemon}) {
         <DialogHeader>
         <DialogTitle>{pokemon.name}</DialogTitle>
           <DialogDescription>
-            <p>Make changes to your profile here. Click save when you are done.</p>
+            <p>Make changes to your profile here. Click save when you&apos;'re done.</p>
           </DialogDescription>
         </DialogHeader>
         <Image className='transition ease-in-out hover:scale-110' src={srcSprites} alt='Image pokemon' width={150} height={150}></Image>
