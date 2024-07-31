@@ -1,5 +1,6 @@
 
 export type Pokemon = {
+    id: number,
     name : string,
     url : string,
     types : [],
@@ -14,7 +15,9 @@ export type Pokemon = {
             front_default : string
           }
         }
-      }
+      },
+      height : number,
+      weight : number
     }
 
 export type Type = {

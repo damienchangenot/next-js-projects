@@ -50,14 +50,19 @@ export default function CardPokemon({ pokemon} : {pokemon: Pokemon}) {
               </div>
         </div>
       </DialogTrigger>
-      <DialogContent className='py-3'>
-        <DialogHeader>
-        <DialogTitle>{pokemon.name}</DialogTitle>
-          <DialogDescription>
-            {`Make changes to your profile here. Click save when you're done.`}
-          </DialogDescription>
-        </DialogHeader>
-        <Image className='transition ease-in-out hover:scale-110' src={srcSprites} alt='Image pokemon' width={150} height={150}></Image>
+      <DialogContent className='pt-3'>
+        <div className='flex justify-center items-center'>
+          <Image className='transition ease-in-out hover:scale-110' src={srcSprites} alt='Image pokemon' width={150} height={150}></Image>
+          <div >
+            <p>#{String(data.id).padStart(3,'0')}</p>
+            <p className='text-xl'>{pokemon.name}</p> 
+            {data.types.map(( type : Type ) => (
+                <Badge key={type.type.name} variant={type.type.name} >{type.type.name}</Badge>
+              ))}
+          </div>
+          
+        </div>
+        
         <Tabs defaultValue="accaboutount" >
         <TabsList>
           <TabsTrigger value="about">About</TabsTrigger>
@@ -65,7 +70,10 @@ export default function CardPokemon({ pokemon} : {pokemon: Pokemon}) {
           <TabsTrigger value="evolutions">Evolutions</TabsTrigger>
         </TabsList>
         <TabsContent value="about">        
-
+              <ul>
+                <li>Height : {data.height * 10} cm</li>
+                <li>Weight : {data.weight / 10} kg</li>
+              </ul>
         </TabsContent>
         <TabsContent value="stats">
           <div>
