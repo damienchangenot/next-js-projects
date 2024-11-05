@@ -21,13 +21,13 @@ export function ContainerPokemon(){
       })
   }, [type])
   
-  if (isLoading) return <Image className="animate-spin" src={'/pokeball.svg'} alt="pokeball loader" width={100} height={100} ></Image>
+  if (isLoading) return <div className="flex justify-center items-center "><Image className="animate-spin" src={'/pokeball.svg'} alt="pokeball loader" width={100} height={100} ></Image></div>
   if (!data) return <p>No profile data</p>
   
   return (
     <>
       <TypeBar setType={setType} type={type} ></TypeBar>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-6 lg:mx-20 ">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-7 gap-y-10 lg:mx-20 ">
         {data.map((pokemon : { pokemon: Pokemon}) => (
           <CardPokemon key={pokemon.pokemon.name}  pokemon={pokemon.pokemon}></CardPokemon>
         ))}

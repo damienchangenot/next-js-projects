@@ -40,8 +40,8 @@ export default function CardPokemon({ pokemon} : {pokemon: Pokemon}) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className={`cursor-pointer w-full py-3 rounded-lg bg-gradient-to-t from-red-700 to-red-400 flex flex-col justify-center items-center   `}>
-              <div className="h-5/6 rounded-full bg-lime-50 shadow-lg  my-2 "><Image className='transition ease-in-out hover:scale-110' src={srcSprites} alt='Image pokemon' width={200} height={200}></Image></div>
+        <div className={`cursor-pointer w-full py-3 rounded-lg bg-gradient-to-t from-red-700 to-red-400 flex flex-col justify-between items-center`}>
+              <div className=" rounded-full bg-lime-50 shadow-lg  my-2 p-3"><Image className='transition ease-in-out hover:scale-110 m-2' src={srcSprites} alt='Image pokemon' width={200} height={200}></Image></div>
               <div className='text-center text-2xl my-3 text-secondary-foreground'>{pokemon.name}</div>
               <div className="flex">
               {data.types.map(( type : Type ) => (
