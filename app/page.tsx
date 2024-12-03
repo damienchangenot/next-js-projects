@@ -7,7 +7,8 @@ export default function Home() {
     <main >
       <section className="items-center flex flex-wrap gap-4 "  style={{
             width: "100%",
-            height: "95vh", // Limitez la hauteur à 50% de la hauteur de la fenêtre
+            height:"100%",
+            minHeight: "100vh", // Limitez la hauteur à 50% de la hauteur de la fenêtre
             position: "relative",
           
             }} >

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import {
   type Container,
@@ -12,22 +12,38 @@ import { loadSlim } from "@tsparticles/slim"; // if you are going to use `loadSl
 // import { loadBasic } from "@tsparticles/basic"; // if you are going to use `loadBasic`, install the "@tsparticles/basic" package too.
 
 export const Particle = () => {
-  const [init, setInit] = useState(false);
+    const containerRef = useRef<HTMLDivElement>(null); 
+    const [init, setInit] = useState(false);
+    const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
 
   // this should be run only once per application lifetime
   useEffect(() => {
     initParticlesEngine(async (engine) => {
-      // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
-      // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
-      // starting from v2 you can add only the features you need reducing the bundle size
-      //await loadAll(engine);
-      //await loadFull(engine);
       await loadSlim(engine);
-      //await loadBasic(engine);
     }).then(() => {
       setInit(true);
     });
+
+     // Mettre à jour la taille du conteneur avec le facteur d'échelle
+     const updateContainerSize = () => {
+        if (containerRef.current) {
+          const scaleFactor = window.devicePixelRatio || 1; // Facteur d'échelle
+          setContainerSize({
+            width: containerRef.current.offsetWidth * scaleFactor,
+            height: containerRef.current.offsetHeight * scaleFactor,
+          });
+        }
+      };
+  
+      updateContainerSize();
+      window.addEventListener("resize", updateContainerSize);
+  
+      return () => {
+        window.removeEventListener("resize", updateContainerSize);
+      };
+    
   }, []);
+
 
   const particlesLoaded = async (container?: Container): Promise<void> => {
     console.log(container);
@@ -97,7 +113,7 @@ export const Particle = () => {
           value: { min: 1, max: 5 },
         },
       },
-      detectRetina: true,
+      detectRetina: false,
       fullScreen: {enable:false, zIndex:-1}
     }),
     [],
