@@ -1,13 +1,33 @@
+"use client";
+
+import { Particle } from "@/components/particles";
+import TrafficLight from "@/components/TrafficLight";
 export default function Home() {
   return (
     <main >
-      <section>
-          <div>
-            <h1>Damien Changenot - Développeur Web</h1>
+      <section className="items-center flex flex-wrap gap-4 "  style={{
+            width: "100%",
+            height: "95vh", // Limitez la hauteur à 50% de la hauteur de la fenêtre
+            position: "relative",
+          
+            }} >
+            <Particle></Particle>  
+            <div className="flex-1 z-10 relative bg-red-400">
+                <h1>Bonjour,</h1>
 
-          </div>
-          <img src="" alt="" />
+            </div>
+            <div className="flex-1  z-10 relative bg-orange-50">
+                <h2>toofil</h2>
+            </div>
       </section>
+      <TrafficLight></TrafficLight>
+      <style jsx global>{`
+        #tsparticles {
+          width: 100% !important;
+          height: 100% !important;
+          position: absolute !important;
+        }
+      `}</style>
   
     </main>
   );
