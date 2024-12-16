@@ -11,7 +11,6 @@ export function ContainerPokemon(){
   const [isLoading, setLoading] = useState(true)
   const [type, setType] = useState('normal');
 
-  //const pokemons = await getPokemonsByType({types});
   useEffect(() => {
     fetch(`https://pokeapi.co/api/v2/type/${type}`)
       .then((res) => res.json())

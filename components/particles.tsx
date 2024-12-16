@@ -12,38 +12,19 @@ import { loadSlim } from "@tsparticles/slim"; // if you are going to use `loadSl
 // import { loadBasic } from "@tsparticles/basic"; // if you are going to use `loadBasic`, install the "@tsparticles/basic" package too.
 
 export const Particle = () => {
-    const containerRef = useRef<HTMLDivElement>(null); 
     const [init, setInit] = useState(false);
-    const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
+
 
   // this should be run only once per application lifetime
   useEffect(() => {
+    // Initialisation de l'engin tsParticles
     initParticlesEngine(async (engine) => {
       await loadSlim(engine);
     }).then(() => {
       setInit(true);
     });
 
-     // Mettre à jour la taille du conteneur avec le facteur d'échelle
-     const updateContainerSize = () => {
-        if (containerRef.current) {
-          const scaleFactor = window.devicePixelRatio || 1; // Facteur d'échelle
-          setContainerSize({
-            width: containerRef.current.offsetWidth * scaleFactor,
-            height: containerRef.current.offsetHeight * scaleFactor,
-          });
-        }
-      };
-  
-      updateContainerSize();
-      window.addEventListener("resize", updateContainerSize);
-  
-      return () => {
-        window.removeEventListener("resize", updateContainerSize);
-      };
-    
   }, []);
-
 
   const particlesLoaded = async (container?: Container): Promise<void> => {
     console.log(container);
@@ -128,12 +109,5 @@ export const Particle = () => {
       />
     );
   }
-
   return <></>;
 };
-
-const styles= {
-    canvas : {
-        
-    }
-}

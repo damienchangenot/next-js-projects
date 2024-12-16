@@ -8,7 +8,7 @@ export default function Home() {
       <section className="items-center flex flex-wrap gap-4 "  style={{
             width: "100%",
             height:"100%",
-            minHeight: "100vh", // Limitez la hauteur à 50% de la hauteur de la fenêtre
+            minHeight: "100vh",
             position: "relative",
           
             }} >
@@ -21,7 +21,6 @@ export default function Home() {
                 <h2>toofil</h2>
             </div>
       </section>
-      <TrafficLight></TrafficLight>
       <style jsx global>{`
         #tsparticles {
           width: 100% !important;

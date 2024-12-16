@@ -2,29 +2,20 @@ import { Pokemon, Stat, Type } from '@/lib/definitions';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
-  DialogFooter,
+  DialogTrigger,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
+  DialogDescription
 } from "@/components/ui/dialog"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import PokemonStat from './PokemonStat';
 
 export default function CardPokemon({ pokemon} : {pokemon: Pokemon}) {
   const [data, setData] = useState<Pokemon>()
   const [isLoading, setLoading] = useState(true)
-  const statsMaxValues  = {
-      "hp": 714,
-      "attack": 714,
-      "defense": 614,
-      "special-attack": 504,
-      "special-defense": 614,
-      "speed": 504,
-  }
+
   useEffect(() => {
     fetch(`${pokemon.url}`)
       .then((res) => res.json())
@@ -36,7 +27,9 @@ export default function CardPokemon({ pokemon} : {pokemon: Pokemon}) {
 
   if (isLoading) return <Image className="animate-spin" src={'/pokeball.svg'} alt="pokeball loader" width={100} height={100} ></Image>
   if (!data) return <p>No profile data</p>
+
   const srcSprites = data.sprites.front_default || data.sprites.other['official-artwork'].front_default || data.sprites.other.dream_world.front_default || '/pokeball.svg';
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -51,6 +44,10 @@ export default function CardPokemon({ pokemon} : {pokemon: Pokemon}) {
         </div>
       </DialogTrigger>
       <DialogContent className='pt-3'>
+
+        <DialogHeader>
+          <DialogTitle>{pokemon.name}</DialogTitle>
+        </DialogHeader>
         <div className='flex justify-center items-center'>
           <Image className='transition ease-in-out hover:scale-110' src={srcSprites} alt='Image pokemon' width={150} height={150}></Image>
           <div >
@@ -60,36 +57,18 @@ export default function CardPokemon({ pokemon} : {pokemon: Pokemon}) {
                 <Badge key={type.type.name} variant={type.type.name} >{type.type.name}</Badge>
               ))}
           </div>
-          
         </div>
-        
-        <Tabs defaultValue="accaboutount" >
-        <TabsList>
-          <TabsTrigger value="about">About</TabsTrigger>
-          <TabsTrigger value="stats">Stats</TabsTrigger>
-          <TabsTrigger value="evolutions">Evolutions</TabsTrigger>
-        </TabsList>
-        <TabsContent value="about">        
-              <ul>
-                <li>Height : {data.height * 10} cm</li>
-                <li>Weight : {data.weight / 10} kg</li>
-              </ul>
-        </TabsContent>
-        <TabsContent value="stats">
-          <div>
-              <ul>
-                {data.stats.map(( stat : Stat ) => (
-                  <li key={stat.stat.name}>{stat.stat.name} : {stat.base_stat} / {statsMaxValues[stat.stat.name]}</li>
-                ))}
-              </ul>
+        <div className='bg-white text-black rounded-md m-1 py-4 px-5'>
+            <div className='grid grid-cols-2 gap:8 divide-x mb-3'>        
+                <div className='text-center'>Height : {data.height * 10} cm</div>
+                <div className='text-center'>Weight : {data.weight / 10} kg</div>
             </div>
-        </TabsContent>
-        <TabsContent value="evolutions">Change your password here.</TabsContent>
-      </Tabs>
-
-        <DialogFooter>
-
-        </DialogFooter>
+            <div>
+                {data.stats.map(( stat : Stat ) => (
+                    <PokemonStat key={stat.stat.name} name={stat.stat.name} value={stat.base_stat}/>
+                ))}
+            </div>
+        </div>
       </DialogContent>
     </Dialog>
   )
